@@ -11,6 +11,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+/**
+ * 井字遊戲 UI
+ */
 public class GameUI implements ActionListener {
 	private static JFrame frame = new JFrame();
 	private static ArrayList<JButton> btns = new ArrayList<>();
@@ -80,15 +83,29 @@ public class GameUI implements ActionListener {
 				Xstring += "" + i;
 			}
 		}
+
 		for (String winRegx : winRegxs) {
-			if (Ostring.contains(winRegx)) {
+			int matchCountX = 0;
+			int matchCountO = 0;
+			String[] nums = winRegx.split("");
+			for (String num : nums) {
+				if (Ostring.contains(num)) {
+					matchCountO++;
+				}
+				if (Xstring.contains(num)) {
+					matchCountX++;
+				}
+
+			}
+			if (matchCountO == 3) {
 				frame.setTitle("井字遊戲，恭喜 O 贏了！！");
 				return true;
 			}
-			if (Xstring.contains(winRegx)) {
+			if (matchCountX == 3) {
 				frame.setTitle("井字遊戲，恭喜 X 贏了！！");
 				return true;
 			}
+
 			if (Ostring.length() + Xstring.length() == 9) {
 				frame.setTitle("井字遊戲，此次平手！！");
 				return true;
@@ -101,6 +118,7 @@ public class GameUI implements ActionListener {
 	 * 重置
 	 */
 	private void reset() {
+		times = 0;
 		frame.setTitle("井字遊戲，由O先開始");
 		for (JButton jButton : btns) {
 			jButton.setText("");
