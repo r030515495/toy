@@ -98,6 +98,7 @@ public class GameUI implements ActionListener {
 
 			}
 			if (matchCountO == 3) {
+
 				frame.setTitle("井字遊戲，恭喜 O 贏了！！");
 				return true;
 			}
@@ -105,11 +106,10 @@ public class GameUI implements ActionListener {
 				frame.setTitle("井字遊戲，恭喜 X 贏了！！");
 				return true;
 			}
-
-			if (Ostring.length() + Xstring.length() == 9) {
-				frame.setTitle("井字遊戲，此次平手！！");
-				return true;
-			}
+		}
+		if (Ostring.length() + Xstring.length() == 9) {
+			frame.setTitle("井字遊戲，此次平手！！");
+			return true;
 		}
 		return false;
 	}
